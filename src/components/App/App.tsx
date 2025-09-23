@@ -6,7 +6,7 @@ import VoteOptions from "../VoteOptions/VoteOptions";
 import VoteStats from "../VoteStats/VoteStats";
 import Notification from "../Notification/Notification";
 
-import { Votes, VoteType } from "../../types/votes";
+import type { Votes, VoteType } from "../types/votes";
 
 function App() {
   const [votes, setVotes] = useState<Votes>({
@@ -16,7 +16,7 @@ function App() {
   });
 
   const handleVote = (type: VoteType) => {
-    setVotes((prev) => ({
+    setVotes((prev: Votes) => ({
       ...prev,
       [type]: prev[type as keyof Votes] + 1,
     }));
