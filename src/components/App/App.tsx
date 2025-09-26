@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import css from "./App.module.css";
 
 import CafeInfo from "../CafeInfo/CafeInfo";
@@ -9,22 +9,11 @@ import Notification from "../Notification/Notification";
 import type { Votes, VoteType } from "../../types/votes";
 
 function App() {
-  const [votes, setVotes] = useState<Votes>({
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  });
+  const [votes, setVotes] = useState<Votes>({ good: 0, neutral: 0, bad: 0 });
 
-  const handleVote = (type: VoteType) => {
-    setVotes((prev: Votes) => ({
-      ...prev,
-      [type]: prev[type as keyof Votes] + 1,
-    }));
-  };
-
-  const resetVotes = () => {
-    setVotes({ good: 0, neutral: 0, bad: 0 });
-  };
+  const handleVote = (type: VoteType) =>
+    setVotes((prev) => ({ ...prev, [type]: prev[type] + 1 }));
+  const resetVotes = () => setVotes({ good: 0, neutral: 0, bad: 0 });
 
   const totalVotes = votes.good + votes.neutral + votes.bad;
   const positiveRate = totalVotes
